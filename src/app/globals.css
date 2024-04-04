@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  body {
+    font-size: theme(fontSize.base);
+    font-weight: theme(fontWeight.medium);
+    font-family: theme(fontFamily.sans);
+    background-color: theme(colors.white);
+  }
+}

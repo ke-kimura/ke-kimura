@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header>
-      <nav className="p-6 bg-gray-800 text-white">
+      <nav className="p-6 bg-white text-black">
         <h1 className="whitespace-pre-wrap text-32 leading-12 tracking-5 md:text-42 font-medium">KEISUKE KIMURA</h1>
         <ul className="flex justify-end space-x-4">
           <li><Link href="/about">自己紹介</Link></li>

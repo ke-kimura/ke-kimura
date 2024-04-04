@@ -10,7 +10,7 @@ export default function Home() {
     <div className="font-sans bg-wight-100 antialiased">
       <Header />
       <section className="py-10 px-5">
-        <h2 className="text-3xl font-bold">ブログ</h2>
+        <h2 className="text-3xl font-bold">work</h2>
       </section>
     </div>
   );
