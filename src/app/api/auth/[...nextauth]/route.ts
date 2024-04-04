@@ -1,8 +1,6 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-export const config = {
-  runtime: 'experimental-edge',
-};
+export const runtime = "experimental-edge";
 
 const handler = NextAuth({
 	secret: process.env.NEXTAUTH_SECRET,
