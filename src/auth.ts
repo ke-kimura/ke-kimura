@@ -1,27 +1,33 @@
 import NextAuth, {NextAuthConfig} from "next-auth";
-import Github from "next-auth/providers/google";
+import Google from "next-auth/providers/google";
 
 export const config: NextAuthConfig = {
   providers: [
-    Github({
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       })
   ],
   basePath: "/api/auth",
   callbacks: {
-    authorized({request, auth}) {
-      try {
-        const { pathname } = request.nextUrl;
-        if (pathname === "/protected-page") return !!auth;
+    async signIn({ user }) {
+      const allowedEmails = process.env.LOGIN_ADDRESS || '';
+      if (user.email && allowedEmails.includes(user.email)) {
         return true;
-      } catch (err) {
-        console.log(err);
       }
+      return '/auth/error'
     },
-    jwt({ token, trigger, session }) {
-      if(trigger === "update") token.name = session.user.name;
+    async jwt({ token, trigger, session }) {
+      if (trigger === 'update') {
+        token.name = session.user.name;
+      }
       return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.name = token.name;
+      }
+      return session;
     },
   },
 };
